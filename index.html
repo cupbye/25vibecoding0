@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대진전자통신고 시간표 조회</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page">
+        <header class="hero">
+            <div>
+                <p class="eyebrow">나이스 교육정보 개방 포털</p>
+                <h1>대진전자통신고등학교 시간표 조회</h1>
+                <p class="hero__subtitle">
+                    학년 · 반 · 날짜를 선택하고 "시간표 조회" 버튼을 누르면<br>
+                    실시간으로 시간표를 불러옵니다.
+                </p>
+            </div>
+            <div class="hero__badge">
+                <span>API KEY</span>
+                <strong>db2f-323a-1e36</strong>
+                <p>공개 키는 누구나 사용할 수 있으므로 호출 한도를 확인하세요.</p>
+            </div>
+        </header>
+
+        <main class="layout">
+            <section class="panel">
+                <form id="timetableForm">
+                    <div class="field-group">
+                        <label for="gradeSelect">학년</label>
+                        <select id="gradeSelect" required></select>
+                    </div>
+                    <div class="field-group">
+                        <label for="classSelect">반</label>
+                        <select id="classSelect" required></select>
+                    </div>
+                    <div class="field-group full">
+                        <label for="dateInput">조회 날짜</label>
+                        <input id="dateInput" type="date" required>
+                    </div>
+                    <button type="submit">시간표 조회</button>
+                </form>
+                <p id="statusMessage" class="status">학교 정보를 불러오는 중입니다...</p>
+                <ul class="tips">
+                    <li>1학년부터 3학년까지, 반은 1~10반을 지원합니다.</li>
+                    <li>달력에서 원하는 날짜를 고르면 해당 학기 시간표를 조회합니다.</li>
+                    <li>API 키는 공개되어 있으므로 과도한 사용은 제한될 수 있습니다.</li>
+                </ul>
+            </section>
+
+            <section class="panel results" id="resultsPanel">
+                <div class="results__header">
+                    <div>
+                        <p class="eyebrow">조회 결과</p>
+                        <h2 id="resultTitle">시간표를 조회해 주세요</h2>
+                    </div>
+                    <div class="tag" id="resultMeta">-</div>
+                </div>
+                <ol id="timetableList" class="timetable-list">
+                    <li class="placeholder">조회 버튼을 누르면 교시별 시간표가 여기에 표시됩니다.</li>
+                </ol>
+            </section>
+        </main>
+    </div>
+
+    <template id="timetableItemTemplate">
+        <li class="timetable-item">
+            <div>
+                <span class="period"></span>
+                <strong class="subject"></strong>
+            </div>
+            <p class="teacher"></p>
+        </li>
+    </template>
+
+    <script src="app.js"></script>
+</body>
+</html>
